@@ -1,10 +1,10 @@
 trigger:
   - master
-  pool: 
-    vmImage: 'ubuntu-latest'
-  variables:
-    buildConfigurations: 'Release'
-  steps:
+pool: 
+  vmImage: 'ubuntu-latest'
+variables:
+  buildConfigurations: 'Release'
+steps:
   - script: dotnet build --configuration $(buildConfiguration)
     displayName: 'dotnet build $(buildConfiguration)'
   - task: CopyFiles@2
@@ -12,3 +12,4 @@ trigger:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
       ArtifactName: 'drop'
       publishLocation: 'Container'
+
